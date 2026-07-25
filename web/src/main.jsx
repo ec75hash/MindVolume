@@ -100,6 +100,7 @@ function App() {
   const [mode, setMode] = useState(0);
   const [lang, setLang] = useState(0);
   const [minB, setMinB] = useState(0);
+  const [drift, setDrift] = useState(true);
   const [hover, setHover] = useState(null);
   const [dossier, setDossier] = useState(null);
 
@@ -119,6 +120,7 @@ function App() {
     camera.position.set(60, 70, 160);
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.autoRotate = true; controls.autoRotateSpeed = 0.5;
+    controls.addEventListener("start", () => setDrift(false));
     const st = stateRef.current;
     Object.assign(st, { renderer, scene, camera, controls, points: null, run: null });
 
@@ -162,6 +164,11 @@ function App() {
     u.uMode.value = mode; u.uLang.value = lang; u.uMinB.value = minB;
   }, [scrub, mode, lang, minB, runMeta]);
 
+  useEffect(() => {
+    const st = stateRef.current;
+    if (st.controls) st.controls.autoRotate = drift;
+  }, [drift, runMeta]);
+
   // picking (nearest projected point)
   function pick(ev, click) {
     const st = stateRef.current;
@@ -197,7 +204,7 @@ function App() {
       : cls[best] > 1 ? "a feeling word — never spoken"
       : cls[best] > 0 ? "spoken elsewhere in the answer" : "background thought";
     const info = { word, gloss, moment, closeness, kind, cluster: shared.wordCluster[wIdx] };
-    if (click) setDossier(info); else setHover(info);
+    if (click) { setDossier(info); setDrift(false); } else setHover(info);
   }
 
   const clusterLabel = (c) =>
@@ -240,6 +247,9 @@ function App() {
         )}
         {seg([["story", 0], ["anatomy", 1]], mode, setMode)}
         {seg([["both", 0], ["english", 1], ["中文", 2]], lang, setLang)}
+        <label style={{ fontSize: 12 }}>drift
+          <input type="checkbox" checked={drift}
+                 onChange={(e) => setDrift(e.target.checked)} /></label>
         <label style={{ fontSize: 12 }}>detail
           <input type="range" min="0" max="0.08" step="0.002" value={minB}
                  onChange={(e) => setMinB(+e.target.value)} /></label>

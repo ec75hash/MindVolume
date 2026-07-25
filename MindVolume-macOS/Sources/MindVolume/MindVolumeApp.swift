@@ -27,7 +27,10 @@ final class InteractiveMTKView: MTKView {
     override func mouseUp(with event: NSEvent) {
         let p = devicePoint(event)
         let dx = p.x - downPoint.x, dy = p.y - downPoint.y
-        if dx*dx + dy*dy < 36 { renderer?.clickPoint = p }
+        if dx*dx + dy*dy < 36 {
+            renderer?.clickPoint = p
+            renderer?.autoOrbit = false     // inspecting a node shouldn't fight the drift
+        }
     }
     override func mouseDragged(with event: NSEvent) {
         guard let r = renderer else { return }
