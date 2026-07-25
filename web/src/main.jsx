@@ -5,10 +5,10 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 // ---------- data loading (MVL3 format) ----------
 async function loadShared() {
-  return (await fetch("/data/v2_shared.json")).json();
+  return (await fetch("data/v2_shared.json")).json();
 }
 async function loadRun(runId) {
-  const buf = await (await fetch(`/data/v2_${runId}.bin`)).arrayBuffer();
+  const buf = await (await fetch(`data/v2_${runId}.bin`)).arrayBuffer();
   const dv = new DataView(buf);
   const magic = new TextDecoder().decode(buf.slice(0, 4));
   if (magic !== "MVL3") throw new Error("bad magic");
@@ -20,7 +20,7 @@ async function loadRun(runId) {
   const clu = new Uint8Array(buf, off, n); off += n;
   const lang = new Uint8Array(buf, off, n); off += n;
   const wid = new Uint32Array(buf, off, n);
-  const meta = await (await fetch(`/data/v2_${runId}_meta.json`)).json();
+  const meta = await (await fetch(`data/v2_${runId}_meta.json`)).json();
   return { n, pos, bright, cls, clu, lang, wid, meta };
 }
 
