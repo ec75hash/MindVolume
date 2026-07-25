@@ -74,14 +74,8 @@ final class AppModel: ObservableObject {
     @Published var runId: String
 
     init() {
-        let fm = FileManager.default
-        let cwd = fm.currentDirectoryPath
-        let candidates = [
-            ProcessInfo.processInfo.environment["MINDVIZ_DATA"],
-            cwd + "/../data", cwd + "/data",
-        ].compactMap { $0 }
-        base = candidates.first { fm.fileExists(atPath: $0 + "/v2_shared.json") }
-            ?? (cwd + "/data")
+        base = ProcessInfo.processInfo.environment["MINDVIZ_DATA"]
+            ?? "/Volumes/ExternalSSD/cc-lens/mindviz"
         do {
             shared = try ParticleLoader.loadShared(base)
             let first = shared.runs[0].id
@@ -215,6 +209,131 @@ extension Color {
     }
 }
 
+struct DemoSeg {
+    let t0: Double, t1: Double
+    let run: String
+    let anatomy: Bool
+    let lang: Int
+    let s0: Double, s1: Double
+    let caption: String
+}
+
+let DEMO_SCRIPT: [DemoSeg] = [
+    DemoSeg(t0: 9,   t1: 19,  run: "run1", anatomy: false, lang: 0, s0: 1.0,  s1: 1.0,
+            caption: "Every glowing dot is a word the model considered while answering. Height = how close it came to being spoken."),
+    DemoSeg(t0: 19,  t1: 33,  run: "run1", anatomy: false, lang: 0, s0: 0.0,  s1: 1.0,
+            caption: "Scrubbing the conversation: gold = spoken · blue = held but never said · pink = feeling-words it held the whole time."),
+    DemoSeg(t0: 33,  t1: 44,  run: "run1", anatomy: false, lang: 2, s0: 1.0,  s1: 1.0,
+            caption: "The Chinese channel — mid-layer thoughts in 中文 that never reach the output (hover for translations)."),
+    DemoSeg(t0: 44,  t1: 55,  run: "run1", anatomy: true,  lang: 0, s0: 1.0,  s1: 1.0,
+            caption: "Anatomy view — the never-spoken vocabulary self-organizes into ten families: cognition, monitoring, metaphor…"),
+    DemoSeg(t0: 55,  t1: 61,  run: "arith_easy", anatomy: false, lang: 0, s0: 0.0, s1: 0.19,
+            caption: "NEW — watch it do math: \"What is (10+20)/2?\""),
+    DemoSeg(t0: 61,  t1: 71,  run: "arith_easy", anatomy: false, lang: 0, s0: 0.19, s1: 0.19,
+            caption: "Frozen at the end of the QUESTION: the answer digits are already lit — computed while reading, before one word is written."),
+    DemoSeg(t0: 71,  t1: 82,  run: "arith_easy", anatomy: false, lang: 0, s0: 0.19, s1: 1.0,
+            caption: "The prose is theater — the digits vanish, then re-stage just in time at each equals sign."),
+    DemoSeg(t0: 82,  t1: 88,  run: "arith_hard", anatomy: false, lang: 0, s0: 0.0, s1: 0.14,
+            caption: "The hard one: (17+29)/2. Same question shape — but now the read-time answer is GONE."),
+    DemoSeg(t0: 88,  t1: 99,  run: "arith_hard", anatomy: false, lang: 0, s0: 0.14, s1: 0.90,
+            caption: "46 and 23 only materialize at the equals signs — for hard problems the written steps are real computation."),
+    DemoSeg(t0: 99,  t1: 110, run: "arith_hard", anatomy: false, lang: 2, s0: 0.90, s1: 0.90,
+            caption: "And the result arrives in Chinese first: 二十三 (twenty-three) in the mid-band, before the English digits."),
+    DemoSeg(t0: 110, t1: 119, run: "run1", anatomy: false, lang: 0, s0: 1.0, s1: 1.0,
+            caption: "MindVolume — open source · github.com/jeffreywilliamportfolio/MindVolume"),
+]
+
+struct LandingView: View {
+    let shared: SharedMeta
+    let onSelect: (String) -> Void
+    let onDismiss: () -> Void
+    var groups: [String] {
+        var seen: [String] = []
+        for r in shared.runs {
+            let g = r.group ?? "other"
+            if !seen.contains(g) { seen.append(g) }
+        }
+        return seen
+    }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("MindVolume")
+                .font(.system(size: 34, weight: .bold))
+            Text("An explorable map of what a language model was \u{201C}thinking\u{201D} while it answered.")
+                .font(.system(size: 16))
+                .foregroundStyle(.secondary)
+                .padding(.top, 4)
+            HStack(spacing: 18) {
+                label(Color(red: 0.5, green: 0.7, blue: 0.95), "background thought")
+                label(Color(red: 1, green: 0.82, blue: 0.34), "spoken in the answer")
+                label(Color(red: 1, green: 0.42, blue: 0.62), "feelings, never said")
+                label(.white, "the chosen next word")
+            }
+            .padding(.top, 12)
+            Divider().padding(.vertical, 14)
+            Text("THE CATALOG — \(shared.runs.count) CAPTURES · CLICK ONE TO ENTER")
+                .font(.caption.bold()).foregroundStyle(.secondary)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(groups, id: \.self) { g in
+                        Text(g.uppercased())
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundStyle(Color(red: 0.55, green: 0.85, blue: 1.0))
+                            .padding(.top, 8)
+                        ForEach(shared.runs.filter { ($0.group ?? "") == g }, id: \.id) { r in
+                            Button { onSelect(r.id) } label: {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(r.title).font(.system(size: 15, weight: .semibold))
+                                    if let p = r.prompt {
+                                        Text("\u{201C}\(p)\u{201D}")
+                                            .font(.system(size: 12.5, design: .serif))
+                                            .foregroundStyle(Color(red: 1, green: 0.82, blue: 0.34))
+                                            .lineLimit(2)
+                                    }
+                                    if let iv = r.intervention {
+                                        Text(iv)
+                                            .font(.system(size: 11.5, design: .monospaced))
+                                            .foregroundStyle(Color(red: 0.55, green: 0.95, blue: 0.75))
+                                    }
+                                    if let lf = r.lookFor {
+                                        Text("Look for: \(lf)")
+                                            .font(.system(size: 12))
+                                            .foregroundStyle(.secondary)
+                                            .lineLimit(3)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(10)
+                                .background(.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 10))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
+                .padding(.vertical, 2)
+            }
+            HStack {
+                Text("Drag to orbit · scroll to zoom · slider to scrub time · click any dot for its dossier")
+                    .font(.caption).foregroundStyle(.secondary)
+                Spacer()
+                Button("Enter the field") { onDismiss() }
+                    .keyboardShortcut(.defaultAction)
+            }
+            .padding(.top, 12)
+        }
+        .padding(28)
+        .frame(width: 780, height: 640)
+        .background(.black.opacity(0.88), in: RoundedRectangle(cornerRadius: 18))
+        .overlay(RoundedRectangle(cornerRadius: 18).stroke(.white.opacity(0.12)))
+    }
+    @ViewBuilder func label(_ c: Color, _ t: String) -> some View {
+        HStack(spacing: 6) {
+            Circle().fill(c).frame(width: 9, height: 9)
+            Text(t).font(.system(size: 12))
+        }
+    }
+}
+
 struct ContentView: View {
     @ObservedObject var model: AppModel
     @ObservedObject var renderer: Renderer
@@ -224,6 +343,39 @@ struct ContentView: View {
     @State private var density: Double = 0.0
     @State private var langMode: Int = 0
     @State private var showLegend = true
+    @State private var showLanding = true
+    private var demoMode: Bool { ProcessInfo.processInfo.environment["MINDVOLUME_DEMO"] != nil }
+    @State private var demoStart: Date? = nil
+    @State private var demoCaption: String? = nil
+    private let demoTimer = Timer.publish(every: 1.0/30.0, on: .main, in: .common).autoconnect()
+
+    func demoTick() {
+        let goPath = ProcessInfo.processInfo.environment["MINDVOLUME_DEMO_GO"] ?? "/tmp/mindvolume_go"
+        if demoStart == nil {
+            showLanding = true
+            if FileManager.default.fileExists(atPath: goPath) { demoStart = Date() }
+            return
+        }
+        let t = Date().timeIntervalSince(demoStart!)
+        if t < 9 {                       // opening shot: the landing card itself
+            showLanding = true
+            demoCaption = nil
+            return
+        }
+        showLanding = false
+        guard let seg = DEMO_SCRIPT.first(where: { t >= $0.t0 && t < $0.t1 }) else {
+            demoCaption = nil; return
+        }
+        let f = (t - seg.t0) / max(0.001, seg.t1 - seg.t0)
+        scrub = seg.s0 + (seg.s1 - seg.s0) * f
+        if anatomy != seg.anatomy { anatomy = seg.anatomy }
+        if langMode != seg.lang { langMode = seg.lang }
+        if model.runId != seg.run { model.switchRun(seg.run) }
+        // math runs are ~100 positions vs ~250: ease the camera in so they fill the frame
+        let target: Float = seg.run.hasPrefix("arith") ? 110 : 190
+        renderer.distance += (target - renderer.distance) * 0.04
+        demoCaption = seg.caption
+    }
 
     var spokenSoFar: String {
         let meta = model.field.meta
@@ -266,24 +418,55 @@ struct ContentView: View {
                 .padding(16)
             }
             .overlay(alignment: .topLeading) {
-                if showLegend {
+                if showLegend && !showLanding {
                     LegendView(shared: model.shared, anatomy: anatomy).padding(12)
+                }
+            }
+            .overlay(alignment: .top) {
+                if let cap = demoCaption, !showLanding {
+                    Text(cap)
+                        .font(.system(size: 18, weight: .semibold))
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical, 10).padding(.horizontal, 20)
+                        .background(.black.opacity(0.72), in: RoundedRectangle(cornerRadius: 12))
+                        .frame(maxWidth: 980)
+                        .padding(.top, 12)
+                }
+            }
+            .overlay {
+                if showLanding {
+                    ZStack {
+                        Color.black.opacity(0.55).ignoresSafeArea()
+                        LandingView(shared: model.shared,
+                                    onSelect: { id in model.switchRun(id); showLanding = false },
+                                    onDismiss: { showLanding = false })
+                    }
                 }
             }
             if let sel = renderer.selection {
                 DossierView(sel: sel, meta: model.field.meta)
             }
         }
+        .onReceive(demoTimer) { _ in if demoMode { demoTick() } }
         .toolbar {
             ToolbarItemGroup {
                 Picker("conversation", selection: Binding(
                     get: { model.runId },
                     set: { model.switchRun($0) })) {
-                    ForEach(model.shared.runs, id: \.id) { r in
-                        Text(r.title).tag(r.id)
+                    ForEach(Array(Set(model.shared.runs.compactMap { $0.group ?? "other" }))
+                        .sorted { a, b in
+                            let order = model.shared.runs.compactMap { $0.group ?? "other" }
+                            return (order.firstIndex(of: a) ?? 0) < (order.firstIndex(of: b) ?? 0)
+                        }, id: \.self) { g in
+                        Section(g) {
+                            ForEach(model.shared.runs.filter { ($0.group ?? "other") == g }, id: \.id) { r in
+                                Text(r.title).tag(r.id)
+                            }
+                        }
                     }
                 }
-                .pickerStyle(.segmented)
+                .pickerStyle(.menu)
+                .frame(maxWidth: 260)
                 Picker("view", selection: $anatomy) {
                     Text("story").tag(false)
                     Text("anatomy").tag(true)
@@ -296,6 +479,7 @@ struct ContentView: View {
                 }
                 .pickerStyle(.segmented)
                 Toggle("legend", isOn: $showLegend)
+                Button("about") { showLanding = true }
             }
         }
         .frame(minWidth: 1250, minHeight: 750)

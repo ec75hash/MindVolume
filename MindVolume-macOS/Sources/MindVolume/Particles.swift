@@ -2,7 +2,11 @@ import Foundation
 import simd
 
 struct SharedMeta: Codable {
-    struct RunRef: Codable { var id: String; var title: String }
+    struct RunRef: Codable {
+        var id: String; var title: String
+        var group: String?; var prompt: String?; var prefill: String?
+        var intervention: String?; var lookFor: String?
+    }
     var words: [String]
     var wordCluster: [Int]
     var wordLang: [Int]

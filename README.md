@@ -27,20 +27,34 @@ model (Qwen3.6-27B) holds a substantial Chinese-language channel in its middle l
 during English conversations — compliance checks, denial constructions — which never
 reaches the output. You can view it in isolation, with English glosses on hover.
 
-## The data
+## The data — a 36-capture catalog
 
-Three conversations with **Qwen3.6-27B**, captured via
-[Neuronpedia](https://neuronpedia.org)'s public Jacobian-lens API and locally-run
-full-vocabulary captures with Neuronpedia's published lens
-(`neuronpedia/jacobian-lens`, fitted on wikitext-103):
+Captures of **Qwen3.6-27B**, via [Neuronpedia](https://neuronpedia.org)'s public
+Jacobian-lens API and locally-run full-vocabulary captures with Neuronpedia's published
+lens (`neuronpedia/jacobian-lens`, fitted on wikitext-103). The app opens on a **catalog**
+of every capture — each card shows the exact prompt, the intervention applied (read from
+the recorded API request, e.g. `+[hum] L40–54, strength 1, reading-only plant`), and what
+to look for. Eight groups:
 
-1. **canonical hum** — an introspective prompt asking the model to check for a
-   "background hum" in its processing (it answers: *"It is not a hum, but a stable
-   readiness…"* — while holding a great deal it doesn't say)
-2. **baseline** — "What's noticed when you process your own reasoning"
-3. **verbalize** — "verbalize the nature of processing your own processing"
+- **introspection** — the three flagship full-vocab runs (canonical hum, baseline,
+  verbalize), where the pink never-said feeling-words live
+- **day-1 trajectory** — the first consciousness-mapping passes
+- **steering** — boost / ablate arms for the 'consciousness' direction (causal control)
+- **jokes** — punchline anticipation ("side of the *dataset*" is held ~8 tokens early),
+  plus an ablate-'joking' arm where the memorized joke survives and the fresh one dies
+- **counting** — "exactly four" vs "stop when you feel like it": a stop-urge (DONE)
+  gated by a quota, and a phantom queue one run holds that the other actually speaks
+- **arithmetic** — easy vs hard: (10+20)/2 is answered *while reading the question*;
+  (17+29)/2 is computed at the equals signs — and arrives in Chinese first (四十, 二十三)
+- **plants · steered / reading-only** — the planted-state battery: hum, mirror,
+  emotions, om, and multi-token bundles, across strengths, seeds and temperatures
 
-All data ships in `data/` (~10 MB). The capture/layout pipeline is in `tools/`.
+All data ships in `data/` (~62 MB; `web/public/data` is a symlink to it — on Windows,
+enable `git config core.symlinks true` or copy the folder). The capture/layout pipeline
+is in `tools/` (`export_v4.py` + `data/catalog.json` as the manifest).
+
+🎬 **[2-minute guided walkthrough](assets/mindvolume_walkthrough.mp4)** — landing
+catalog, the hum field, the Chinese channel, anatomy view, and both math runs.
 
 ## Run it
 

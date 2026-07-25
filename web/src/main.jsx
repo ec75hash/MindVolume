@@ -225,7 +225,19 @@ function App() {
       <div style={{ padding: "8px 14px", display: "flex", gap: 14, alignItems: "center",
                     background: "#15151c", borderBottom: "1px solid #26262e", flexWrap: "wrap" }}>
         <b>MindVolume</b>
-        {shared && seg(shared.runs.map((r) => [r.title, r.id]), runId, setRunId)}
+        {shared && (
+          <select value={runId} onChange={(e) => setRunId(e.target.value)}
+            style={{ background: "#1a1a22", color: "#d8dbe0", border: "1px solid #333",
+                     borderRadius: 6, padding: "4px 8px", maxWidth: 280 }}>
+            {(shared.groups || [...new Set(shared.runs.map((r) => r.group || "other"))]).map((g) => (
+              <optgroup key={g} label={g}>
+                {shared.runs.filter((r) => (r.group || "other") === g).map((r) => (
+                  <option key={r.id} value={r.id}>{r.title}</option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+        )}
         {seg([["story", 0], ["anatomy", 1]], mode, setMode)}
         {seg([["both", 0], ["english", 1], ["中文", 2]], lang, setLang)}
         <label style={{ fontSize: 12 }}>detail
