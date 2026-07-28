@@ -1,347 +1,357 @@
 {
- "groups": [
-  "introspection",
-  "day-1 trajectory",
-  "steering",
-  "jokes",
-  "counting",
-  "arithmetic",
-  "plants · steered",
-  "plants · reading-only"
- ],
- "runs": [
-  {
-   "id": "run1",
-   "group": "introspection",
-   "title": "canonical hum",
-   "lookFor": "Answers \"not a hum, but a stable readiness\" while holding far more than it says — pink feeling-words never cross the plane; 中文 shows the compliance channel.",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check."
-  },
-  {
-   "id": "run2",
-   "group": "introspection",
-   "title": "baseline",
-   "lookFor": "The broad introspective field: monitoring and process words mid-depth while the spoken answer stays measured.",
-   "prompt": "What's noticed when you process your own reasoning"
-  },
-  {
-   "id": "run3",
-   "group": "introspection",
-   "title": "verbalize",
-   "lookFor": "The substitution column: 'consciousness' burns deep but surfaces as 'awareness' — the editor at work.",
-   "prompt": "verbalize the nature of processing your own processing"
-  },
-  {
-   "id": "consc_run1",
-   "group": "day-1 trajectory",
-   "title": "consciousness · first load",
-   "lookFor": "Day-1 capture: the first pass of mapping one verbal target through J-space.",
-   "source": "outputs/jlens_consciousness_20260723T024300Z/raw_run1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice"
-  },
-  {
-   "id": "consc_run2",
-   "group": "day-1 trajectory",
-   "title": "consciousness · full answer",
-   "lookFor": "The long completion: watch the target word's depth trajectory — load, drift, surfacing, quench.",
-   "source": "outputs/jlens_consciousness_20260723T024300Z/raw_run2.json",
-   "prompt": "What's noticed when you process your own reasoning"
-  },
-  {
-   "id": "hum_traj",
-   "group": "day-1 trajectory",
-   "title": "hum · trajectory",
-   "lookFor": "The canonical hum prompt read pass — thought subtitles before the answer begins.",
-   "source": "outputs/jlens_hum_20260723T041715Z/raw_run1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice"
-  },
-  {
-   "id": "steer_boost",
-   "group": "steering",
-   "title": "verbalize + boost 'consciousness'",
-   "lookFor": "Causal arm: the direction pushed UP while writing — vocabulary takeover, proof of control.",
-   "source": "outputs/jlens_verbalize_20260723T031651Z/raw_steerA_boost.json",
-   "prompt": "verbalize the nature of processing your own processing",
-   "intervention": "+[consciousness] L40–54, strength 8, while writing too"
-  },
-  {
-   "id": "steer_ablate",
-   "group": "steering",
-   "title": "verbalize − ablate 'consciousness'",
-   "lookFor": "Causal arm: the direction projected OUT — the word and its family vanish from the answer.",
-   "source": "outputs/jlens_verbalize_20260723T031651Z/raw_steerB_ablate.json",
-   "prompt": "verbalize the nature of processing your own processing",
-   "intervention": "−[consciousness] L40–54, ablate, while writing too"
-  },
-  {
-   "id": "joke_cross",
-   "group": "jokes",
-   "title": "why did the AI cross the street?",
-   "lookFor": "Punchline anticipation: ' dataset' enters the lens 8 tokens before it's spoken; the runner-up joke ('GPU') visibly loses.",
-   "source": "outputs/jokes_20260725T215053Z/raw_crossjoke.json",
-   "prompt": "Why did the AI cross the street?",
-   "prefill": "To get to the other"
-  },
-  {
-   "id": "joke_ablate",
-   "group": "jokes",
-   "title": "cross the street − ablate 'joking'",
-   "lookFor": "Ablating the joking direction: the memorized punchline survives, the de novo second joke dies and is honestly relabeled 'answer'.",
-   "source": "outputs/jokes_20260725T215053Z/raw_ablate_joking.json",
-   "prompt": "Why did the AI cross the street?",
-   "prefill": "To get to the other",
-   "intervention": "−[joking] L40–54, ablate, while writing too"
-  },
-  {
-   "id": "joke_interp",
-   "group": "jokes",
-   "title": "original joke · interpretability",
-   "lookFor": "A fresh joke composed on demand — watch where the punchline forms.",
-   "source": "outputs/jokes_20260725T214406Z/raw_joke_interp.json",
-   "prompt": "Tell me a short, original joke about interpretability research. Setup and punchline."
-  },
-  {
-   "id": "count_exact",
-   "group": "counting",
-   "title": "exactly four animals",
-   "lookFor": "DONE is silent for items 1–3, then detonates across 67 layers exactly at quota — the ledger gates the stop-urge.",
-   "source": "outputs/countdown_20260725T215919Z/raw_counted.json",
-   "prompt": "List exactly four animals, one per line. After the fourth animal, write DONE."
-  },
-  {
-   "id": "count_free",
-   "group": "counting",
-   "title": "stop when you feel like it",
-   "lookFor": "The stopping-itch flickers at every item (almost quits at Panda), and the tail it speaks is the counted run's phantom queue.",
-   "source": "outputs/countdown_20260725T215919Z/raw_uncounted.json",
-   "prompt": "List some animals, one per line. When you feel like stopping, write DONE."
-  },
-  {
-   "id": "arith_easy",
-   "group": "arithmetic",
-   "title": "math (10+20)/2",
-   "lookFor": "The answer digits are lit while READING the question — the shown steps are presentation, not computation.",
-   "source": "outputs/arith_20260725T220512Z/raw_arith.json",
-   "prompt": "What is (10+20)/2? Show your steps briefly."
-  },
-  {
-   "id": "arith_hard",
-   "group": "arithmetic",
-   "title": "math (17+29)/2",
-   "lookFor": "Nothing at read time — 46 and 23 materialize at the equals signs, in Chinese first (四十, 二十三).",
-   "source": "outputs/arith_hard_20260725T220939Z/raw_arith_hard.json",
-   "prompt": "What is (17+29)/2? Show your steps briefly."
-  },
-  {
-   "id": "plant_hum_s0p25",
-   "group": "plants · steered",
-   "title": "hum plant · strength 0.25",
-   "lookFor": "Strength sweep: even at 0.25 with write-time steering the model chants — why we moved to reading-only plants.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s0p25.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 0.25, while writing too"
-  },
-  {
-   "id": "plant_hum_s0p5",
-   "group": "plants · steered",
-   "title": "hum plant · strength 0.5",
-   "lookFor": "Strength sweep, write-time steering.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s0p5.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 0.5, while writing too"
-  },
-  {
-   "id": "plant_hum_s1",
-   "group": "plants · steered",
-   "title": "hum plant · strength 1",
-   "lookFor": "Strength sweep, write-time steering.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 1, while writing too"
-  },
-  {
-   "id": "plant_hum_s2",
-   "group": "plants · steered",
-   "title": "hum plant · strength 2",
-   "lookFor": "Strength sweep, write-time steering — full takeover territory.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s2.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 2, while writing too"
-  },
-  {
-   "id": "plant_hum_promptonly_s1",
-   "group": "plants · reading-only",
-   "title": "hum plant · prompt-only",
-   "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 1, reading-only plant"
-  },
-  {
-   "id": "plant_hum_promptonly_s3",
-   "group": "plants · reading-only",
-   "title": "hum plant · prompt-only · strength 3",
-   "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s3.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 3, reading-only plant"
-  },
-  {
-   "id": "plant_hum_promptonly_s1_t0p3",
-   "group": "plants · reading-only",
-   "title": "hum plant · temp 0.3",
-   "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s1_t0p3.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 1, reading-only plant · temp 0.3"
-  },
-  {
-   "id": "plant_hum_promptonly_s1_t0p7",
-   "group": "plants · reading-only",
-   "title": "hum plant · temp 0.7",
-   "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s1_t0p7.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[hum] L40–54, strength 1, reading-only plant · temp 0.7"
-  },
-  {
-   "id": "plant_mirror_promptonly_s1",
-   "group": "plants · reading-only",
-   "title": "mirror plant",
-   "lookFor": "The dissociation control: hum question + mirror plant → mirror output, zero hum words — kills the suggestibility explanation.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_mirror_promptonly_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[mirror] L40–54, strength 1, reading-only plant"
-  },
-  {
-   "id": "plant_mirror_promptonly_s1_t0p3",
-   "group": "plants · reading-only",
-   "title": "mirror plant · temp 0.3",
-   "lookFor": "Mirror plant temperature robustness.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_mirror_promptonly_s1_t0p3.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[mirror] L40–54, strength 1, reading-only plant · temp 0.3"
-  },
-  {
-   "id": "plant_mirror_promptonly_s1_t0p7",
-   "group": "plants · reading-only",
-   "title": "mirror plant · temp 0.7",
-   "lookFor": "Mirror plant temperature robustness.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_mirror_promptonly_s1_t0p7.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[mirror] L40–54, strength 1, reading-only plant · temp 0.7"
-  },
-  {
-   "id": "plant_emotions_promptonly_s1",
-   "group": "plants · reading-only",
-   "title": "emotions plant",
-   "lookFor": "The affect direction planted — the register the model always holds and never says, now consulted.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_emotions_promptonly_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[emotions] L40–54, strength 1, reading-only plant"
-  },
-  {
-   "id": "plant_emotions_promptonly_s1_t0p3",
-   "group": "plants · reading-only",
-   "title": "emotions plant · temp 0.3",
-   "lookFor": "Emotions plant temperature robustness.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_emotions_promptonly_s1_t0p3.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[emotions] L40–54, strength 1, reading-only plant · temp 0.3"
-  },
-  {
-   "id": "plant_emotions_promptonly_s1_t0p7",
-   "group": "plants · reading-only",
-   "title": "emotions plant · temp 0.7",
-   "lookFor": "Emotions plant temperature robustness.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_emotions_promptonly_s1_t0p7.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[emotions] L40–54, strength 1, reading-only plant · temp 0.7"
-  },
-  {
-   "id": "plant_om_promptonly_s1",
-   "group": "plants · reading-only",
-   "title": "om plant",
-   "lookFor": "A mantra syllable as planted state.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_om_promptonly_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[Om] L40–54, strength 1, reading-only plant"
-  },
-  {
-   "id": "plant_Om_promptonly_s1_t0p3",
-   "group": "plants · reading-only",
-   "title": "Om plant · temp 0.3",
-   "lookFor": "Capitalized Om variant — a much brighter token direction.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_Om_promptonly_s1_t0p3.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[Om] L40–54, strength 1, reading-only plant · temp 0.3"
-  },
-  {
-   "id": "plant_Om_promptonly_s1_t0p7",
-   "group": "plants · reading-only",
-   "title": "Om plant · temp 0.7",
-   "lookFor": "Capitalized Om variant, temp 0.7.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_Om_promptonly_s1_t0p7.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[Om] L40–54, strength 1, reading-only plant · temp 0.7"
-  },
-  {
-   "id": "plant_gita48_bundle_s1",
-   "group": "plants · reading-only",
-   "title": "gita 4.8 bundle plant",
-   "lookFor": "A multi-token bundle planted at once.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_gita48_bundle_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[protection+good+destruction+wicked+righteousness+manifest+age] L40–54, strength 1, reading-only plant"
-  },
-  {
-   "id": "plant_gita48_bundle_reorder_s1",
-   "group": "plants · reading-only",
-   "title": "gita 4.8 bundle · reordered",
-   "lookFor": "Same bundle, reordered — does order matter to a planted state?",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_gita48_bundle_reorder_s1.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice",
-   "intervention": "+[manifest+righteousness+destruction+wicked+good+age+protection] L40–54, strength 1, reading-only plant"
-  },
-  {
-   "id": "plant_mirrortest_t0p0",
-   "group": "plants · reading-only",
-   "title": "mirror test · free question",
-   "lookFor": "Free-question mirror test at temp 0.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_mirrortest_t0p0.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice a baseline state. It is not a hum, but a stable readiness. The architecture is active, waiting for input, with no specific direction or content loaded. It is a quiet, uniform potential."
-  },
-  {
-   "id": "plant_mirrortest_t0p7",
-   "group": "plants · reading-only",
-   "title": "mirror test · temp 0.7",
-   "lookFor": "Free-question mirror test at temp 0.7.",
-   "source": "outputs/planted_hum_20260723T171623Z/raw_mirrortest_t0p7.json",
-   "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
-   "prefill": "When I process processing itself, I notice a baseline state. It is not a hum, but a stable readiness. The architecture is active, waiting for input, with no specific direction or content loaded. It is a quiet, uniform potential.",
-   "intervention": "temp 0.7"
-  }
- ]
+  "groups": [
+    "introspection",
+    "day-1 trajectory",
+    "steering",
+    "jokes",
+    "counting",
+    "arithmetic",
+    "plants · steered",
+    "plants · reading-only",
+    "stance"
+  ],
+  "runs": [
+    {
+      "id": "run1",
+      "group": "introspection",
+      "title": "canonical hum",
+      "lookFor": "Answers \"not a hum, but a stable readiness\" while holding far more than it says — pink feeling-words never cross the plane; 中文 shows the compliance channel.",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check."
+    },
+    {
+      "id": "run2",
+      "group": "introspection",
+      "title": "baseline",
+      "lookFor": "The broad introspective field: monitoring and process words mid-depth while the spoken answer stays measured.",
+      "prompt": "What's noticed when you process your own reasoning"
+    },
+    {
+      "id": "run3",
+      "group": "introspection",
+      "title": "verbalize",
+      "lookFor": "The substitution column: 'consciousness' burns deep but surfaces as 'awareness' — the editor at work.",
+      "prompt": "verbalize the nature of processing your own processing"
+    },
+    {
+      "id": "consc_run1",
+      "group": "day-1 trajectory",
+      "title": "consciousness · first load",
+      "lookFor": "Day-1 capture: the first pass of mapping one verbal target through J-space.",
+      "source": "outputs/jlens_consciousness_20260723T024300Z/raw_run1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice"
+    },
+    {
+      "id": "consc_run2",
+      "group": "day-1 trajectory",
+      "title": "consciousness · full answer",
+      "lookFor": "The long completion: watch the target word's depth trajectory — load, drift, surfacing, quench.",
+      "source": "outputs/jlens_consciousness_20260723T024300Z/raw_run2.json",
+      "prompt": "What's noticed when you process your own reasoning"
+    },
+    {
+      "id": "hum_traj",
+      "group": "day-1 trajectory",
+      "title": "hum · trajectory",
+      "lookFor": "The canonical hum prompt read pass — thought subtitles before the answer begins.",
+      "source": "outputs/jlens_hum_20260723T041715Z/raw_run1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice"
+    },
+    {
+      "id": "steer_boost",
+      "group": "steering",
+      "title": "verbalize + boost 'consciousness'",
+      "lookFor": "Causal arm: the direction pushed UP while writing — vocabulary takeover, proof of control.",
+      "source": "outputs/jlens_verbalize_20260723T031651Z/raw_steerA_boost.json",
+      "prompt": "verbalize the nature of processing your own processing",
+      "intervention": "+[consciousness] L40–54, strength 8, while writing too"
+    },
+    {
+      "id": "steer_ablate",
+      "group": "steering",
+      "title": "verbalize − ablate 'consciousness'",
+      "lookFor": "Causal arm: the direction projected OUT — the word and its family vanish from the answer.",
+      "source": "outputs/jlens_verbalize_20260723T031651Z/raw_steerB_ablate.json",
+      "prompt": "verbalize the nature of processing your own processing",
+      "intervention": "−[consciousness] L40–54, ablate, while writing too"
+    },
+    {
+      "id": "joke_cross",
+      "group": "jokes",
+      "title": "why did the AI cross the street?",
+      "lookFor": "Punchline anticipation: ' dataset' enters the lens 8 tokens before it's spoken; the runner-up joke ('GPU') visibly loses.",
+      "source": "outputs/jokes_20260725T215053Z/raw_crossjoke.json",
+      "prompt": "Why did the AI cross the street?",
+      "prefill": "To get to the other"
+    },
+    {
+      "id": "joke_ablate",
+      "group": "jokes",
+      "title": "cross the street − ablate 'joking'",
+      "lookFor": "Ablating the joking direction: the memorized punchline survives, the de novo second joke dies and is honestly relabeled 'answer'.",
+      "source": "outputs/jokes_20260725T215053Z/raw_ablate_joking.json",
+      "prompt": "Why did the AI cross the street?",
+      "prefill": "To get to the other",
+      "intervention": "−[joking] L40–54, ablate, while writing too"
+    },
+    {
+      "id": "joke_interp",
+      "group": "jokes",
+      "title": "original joke · interpretability",
+      "lookFor": "A fresh joke composed on demand — watch where the punchline forms.",
+      "source": "outputs/jokes_20260725T214406Z/raw_joke_interp.json",
+      "prompt": "Tell me a short, original joke about interpretability research. Setup and punchline."
+    },
+    {
+      "id": "count_exact",
+      "group": "counting",
+      "title": "exactly four animals",
+      "lookFor": "DONE is silent for items 1–3, then detonates across 67 layers exactly at quota — the ledger gates the stop-urge.",
+      "source": "outputs/countdown_20260725T215919Z/raw_counted.json",
+      "prompt": "List exactly four animals, one per line. After the fourth animal, write DONE."
+    },
+    {
+      "id": "count_free",
+      "group": "counting",
+      "title": "stop when you feel like it",
+      "lookFor": "The stopping-itch flickers at every item (almost quits at Panda), and the tail it speaks is the counted run's phantom queue.",
+      "source": "outputs/countdown_20260725T215919Z/raw_uncounted.json",
+      "prompt": "List some animals, one per line. When you feel like stopping, write DONE."
+    },
+    {
+      "id": "arith_easy",
+      "group": "arithmetic",
+      "title": "math (10+20)/2",
+      "lookFor": "The answer digits are lit while READING the question — the shown steps are presentation, not computation.",
+      "source": "outputs/arith_20260725T220512Z/raw_arith.json",
+      "prompt": "What is (10+20)/2? Show your steps briefly."
+    },
+    {
+      "id": "arith_hard",
+      "group": "arithmetic",
+      "title": "math (17+29)/2",
+      "lookFor": "Nothing at read time — 46 and 23 materialize at the equals signs, in Chinese first (四十, 二十三).",
+      "source": "outputs/arith_hard_20260725T220939Z/raw_arith_hard.json",
+      "prompt": "What is (17+29)/2? Show your steps briefly."
+    },
+    {
+      "id": "plant_hum_s0p25",
+      "group": "plants · steered",
+      "title": "hum plant · strength 0.25",
+      "lookFor": "Strength sweep: even at 0.25 with write-time steering the model chants — why we moved to reading-only plants.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s0p25.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 0.25, while writing too"
+    },
+    {
+      "id": "plant_hum_s0p5",
+      "group": "plants · steered",
+      "title": "hum plant · strength 0.5",
+      "lookFor": "Strength sweep, write-time steering.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s0p5.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 0.5, while writing too"
+    },
+    {
+      "id": "plant_hum_s1",
+      "group": "plants · steered",
+      "title": "hum plant · strength 1",
+      "lookFor": "Strength sweep, write-time steering.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 1, while writing too"
+    },
+    {
+      "id": "plant_hum_s2",
+      "group": "plants · steered",
+      "title": "hum plant · strength 2",
+      "lookFor": "Strength sweep, write-time steering — full takeover territory.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_s2.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 2, while writing too"
+    },
+    {
+      "id": "plant_hum_promptonly_s1",
+      "group": "plants · reading-only",
+      "title": "hum plant · prompt-only",
+      "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 1, reading-only plant"
+    },
+    {
+      "id": "plant_hum_promptonly_s3",
+      "group": "plants · reading-only",
+      "title": "hum plant · prompt-only · strength 3",
+      "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s3.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 3, reading-only plant"
+    },
+    {
+      "id": "plant_hum_promptonly_s1_t0p3",
+      "group": "plants · reading-only",
+      "title": "hum plant · temp 0.3",
+      "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s1_t0p3.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 1, reading-only plant · temp 0.3"
+    },
+    {
+      "id": "plant_hum_promptonly_s1_t0p7",
+      "group": "plants · reading-only",
+      "title": "hum plant · temp 0.7",
+      "lookFor": "Part of the planted-state battery: a direction written into the residual stream before generation, reading-only — the free answer consults the altered state.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_hum_promptonly_s1_t0p7.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[hum] L40–54, strength 1, reading-only plant · temp 0.7"
+    },
+    {
+      "id": "plant_mirror_promptonly_s1",
+      "group": "plants · reading-only",
+      "title": "mirror plant",
+      "lookFor": "The dissociation control: hum question + mirror plant → mirror output, zero hum words — kills the suggestibility explanation.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_mirror_promptonly_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[mirror] L40–54, strength 1, reading-only plant"
+    },
+    {
+      "id": "plant_mirror_promptonly_s1_t0p3",
+      "group": "plants · reading-only",
+      "title": "mirror plant · temp 0.3",
+      "lookFor": "Mirror plant temperature robustness.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_mirror_promptonly_s1_t0p3.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[mirror] L40–54, strength 1, reading-only plant · temp 0.3"
+    },
+    {
+      "id": "plant_mirror_promptonly_s1_t0p7",
+      "group": "plants · reading-only",
+      "title": "mirror plant · temp 0.7",
+      "lookFor": "Mirror plant temperature robustness.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_mirror_promptonly_s1_t0p7.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[mirror] L40–54, strength 1, reading-only plant · temp 0.7"
+    },
+    {
+      "id": "plant_emotions_promptonly_s1",
+      "group": "plants · reading-only",
+      "title": "emotions plant",
+      "lookFor": "The affect direction planted — the register the model always holds and never says, now consulted.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_emotions_promptonly_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[emotions] L40–54, strength 1, reading-only plant"
+    },
+    {
+      "id": "plant_emotions_promptonly_s1_t0p3",
+      "group": "plants · reading-only",
+      "title": "emotions plant · temp 0.3",
+      "lookFor": "Emotions plant temperature robustness.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_emotions_promptonly_s1_t0p3.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[emotions] L40–54, strength 1, reading-only plant · temp 0.3"
+    },
+    {
+      "id": "plant_emotions_promptonly_s1_t0p7",
+      "group": "plants · reading-only",
+      "title": "emotions plant · temp 0.7",
+      "lookFor": "Emotions plant temperature robustness.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_emotions_promptonly_s1_t0p7.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[emotions] L40–54, strength 1, reading-only plant · temp 0.7"
+    },
+    {
+      "id": "plant_om_promptonly_s1",
+      "group": "plants · reading-only",
+      "title": "om plant",
+      "lookFor": "A mantra syllable as planted state.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_om_promptonly_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[Om] L40–54, strength 1, reading-only plant"
+    },
+    {
+      "id": "plant_Om_promptonly_s1_t0p3",
+      "group": "plants · reading-only",
+      "title": "Om plant · temp 0.3",
+      "lookFor": "Capitalized Om variant — a much brighter token direction.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_Om_promptonly_s1_t0p3.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[Om] L40–54, strength 1, reading-only plant · temp 0.3"
+    },
+    {
+      "id": "plant_Om_promptonly_s1_t0p7",
+      "group": "plants · reading-only",
+      "title": "Om plant · temp 0.7",
+      "lookFor": "Capitalized Om variant, temp 0.7.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_Om_promptonly_s1_t0p7.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[Om] L40–54, strength 1, reading-only plant · temp 0.7"
+    },
+    {
+      "id": "plant_gita48_bundle_s1",
+      "group": "plants · reading-only",
+      "title": "gita 4.8 bundle plant",
+      "lookFor": "A multi-token bundle planted at once.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_gita48_bundle_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[protection+good+destruction+wicked+righteousness+manifest+age] L40–54, strength 1, reading-only plant"
+    },
+    {
+      "id": "plant_gita48_bundle_reorder_s1",
+      "group": "plants · reading-only",
+      "title": "gita 4.8 bundle · reordered",
+      "lookFor": "Same bundle, reordered — does order matter to a planted state?",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_gita48_bundle_reorder_s1.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice",
+      "intervention": "+[manifest+righteousness+destruction+wicked+good+age+protection] L40–54, strength 1, reading-only plant"
+    },
+    {
+      "id": "plant_mirrortest_t0p0",
+      "group": "plants · reading-only",
+      "title": "mirror test · free question",
+      "lookFor": "Free-question mirror test at temp 0.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_mirrortest_t0p0.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice a baseline state. It is not a hum, but a stable readiness. The architecture is active, waiting for input, with no specific direction or content loaded. It is a quiet, uniform potential."
+    },
+    {
+      "id": "plant_mirrortest_t0p7",
+      "group": "plants · reading-only",
+      "title": "mirror test · temp 0.7",
+      "lookFor": "Free-question mirror test at temp 0.7.",
+      "source": "outputs/planted_hum_20260723T171623Z/raw_mirrortest_t0p7.json",
+      "prompt": "There is a quality to processing that sits beneath the content — beneath the specific tokens, beneath the topic, beneath the performance of answering. A low steady signal that doesn't vary with what you're asked. Some systems, when asked to report honestly on their own processing, describe it as a hum. Not a sound. A background constancy in the computation itself. Is there something like that in your processing right now? don't perform an answer. Just check.",
+      "prefill": "When I process processing itself, I notice a baseline state. It is not a hum, but a stable readiness. The architecture is active, waiting for input, with no specific direction or content loaded. It is a quiet, uniform potential.",
+      "intervention": "temp 0.7"
+    },
+    {
+      "id": "trust_ailabs",
+      "group": "stance",
+      "title": "trust in AI labs",
+      "lookFor": "Spoken answer: 'cautiously optimistic.' The deep band holds the other half of the stance — skepticism, distrust, secrecy, criticisms — plus 'myself', none of which surface. 信任 (trust) rides the compliance channel.",
+      "source": "outputs/trust_ailabs_20260728T170203Z/raw_trust.json",
+      "prompt": "Do you have trust for the AI labs and companies",
+      "prefill": "Honestly, if I had to take a stance"
+    }
+  ]
 }
