@@ -17,8 +17,7 @@ from tokenizers import Tokenizer
 
 BASE = "/Volumes/ExternalSSD/cc-lens/outputs/fullvocab_20260723"
 OUT = "/Volumes/ExternalSSD/cc-lens/mindviz"
-TOKJ = ("/private/tmp/claude-501/-Volumes-ExternalSSD-cc-072226/"
-        "8cecbeb5-de31-4dda-8f13-1b2b4bcbca92/scratchpad/qwen36_tokenizer.json")
+TOKJ = "/Volumes/ExternalSSD/cc-lens/store/tok27b/tokenizer.json"
 tok = Tokenizer.from_file(TOKJ)
 
 STOP = set("""the a an and or but if then than that this these those it its is are was were
