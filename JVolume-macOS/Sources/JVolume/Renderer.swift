@@ -43,6 +43,8 @@ final class Renderer: NSObject, MTKViewDelegate, ObservableObject {
     var distance: Float = 190
     var target = SIMD3<Float>(77, 22, 0)
     var autoOrbit = true
+    /// JVOLUME_AZIMUTH=<radians> pins the camera yaw and disables drift (clean stills).
+    let fixedAzimuth: Float? = ProcessInfo.processInfo.environment["JVOLUME_AZIMUTH"].flatMap(Float.init)
 
     var scrub: Float = 1.0
     var pointScale: Float = 0.55
@@ -67,6 +69,7 @@ final class Renderer: NSObject, MTKViewDelegate, ObservableObject {
         self.field = field
         self.shared = shared
         super.init()
+        if let a = fixedAzimuth { azimuth = a }
 
         let lib = try device.makeLibrary(source: shaderSource, options: nil)
 
@@ -115,7 +118,7 @@ final class Renderer: NSObject, MTKViewDelegate, ObservableObject {
     func draw(in view: MTKView) {
         guard let drawable = view.currentDrawable,
               let rpd = view.currentRenderPassDescriptor else { return }
-        if autoOrbit { azimuth += 0.0018 }
+        if autoOrbit && fixedAzimuth == nil { azimuth += 0.0018 }
 
         let aspect = Float(view.drawableSize.width / max(1, view.drawableSize.height))
         let eye = target + SIMD3<Float>(

@@ -377,7 +377,8 @@ struct ContentView: View {
         // math runs are ~100 positions vs ~250: ease the camera in so they fill the frame
         let target: Float = seg.run.hasPrefix("arith") ? 110 : 190
         renderer.distance += (target - renderer.distance) * 0.04
-        demoCaption = seg.caption
+        // JVOLUME_DEMO_NOCAPTION=1 drives the script without captions (clean stills)
+        demoCaption = ProcessInfo.processInfo.environment["JVOLUME_DEMO_NOCAPTION"] == nil ? seg.caption : nil
     }
 
     var spokenSoFar: String {
