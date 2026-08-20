@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MindVolume v2 export.
+"""J Volume v2 export.
 
 Pooled semantic layout + unsaid-cluster taxonomy shared across all three runs,
 per-run MVL2 particle bins from the top-64 captures, shared + per-run meta,

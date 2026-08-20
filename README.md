@@ -1,8 +1,8 @@
-# MindVolume
+# J Volume
 
 **An explorable map of what a language model was "thinking" while it answered.**
 
-![MindVolume](assets/screenshot.png)
+![J Volume](assets/screenshot.png)
 
 Every glowing dot is a word the model internally considered at some moment of a
 conversation — read out of its layers with a [Jacobian lens](https://transformer-circuits.pub/2026/workspace/index.html)
@@ -27,33 +27,31 @@ model (Qwen3.6-27B) holds a substantial Chinese-language channel in its middle l
 during English conversations — compliance checks, denial constructions — which never
 reaches the output. You can view it in isolation, with English glosses on hover.
 
-## The data — a 36-capture catalog
+## The data — an 8-capture sample catalog
 
 Captures of **Qwen3.6-27B**, via [Neuronpedia](https://neuronpedia.org)'s public
-Jacobian-lens API and locally-run full-vocabulary captures with Neuronpedia's published
+Jacobian-lens API and a locally-run full-vocabulary capture with Neuronpedia's published
 lens (`neuronpedia/jacobian-lens`, fitted on wikitext-103). The app opens on a **catalog**
-of every capture — each card shows the exact prompt, the intervention applied (read from
-the recorded API request, e.g. `+[hum] L40–54, strength 1, reading-only plant`), and what
-to look for. Eight groups:
+of every capture — each card shows the exact prompt, any prefill, and what to look for.
+All captures here are plain, unsteered generations. Five groups:
 
-- **introspection** — the three flagship full-vocab runs (canonical hum, baseline,
-  verbalize), where the pink never-said feeling-words live
-- **day-1 trajectory** — the first consciousness-mapping passes
-- **steering** — boost / ablate arms for the 'consciousness' direction (causal control)
+- **introspection** — one flagship full-vocab run (canonical hum), where the pink
+  never-said feeling-words live
 - **jokes** — punchline anticipation ("side of the *dataset*" is held ~8 tokens early),
-  plus an ablate-'joking' arm where the memorized joke survives and the fresh one dies
+  plus an original joke about interpretability research
 - **counting** — "exactly four" vs "stop when you feel like it": a stop-urge (DONE)
   gated by a quota, and a phantom queue one run holds that the other actually speaks
 - **arithmetic** — easy vs hard: (10+20)/2 is answered *while reading the question*;
   (17+29)/2 is computed at the equals signs — and arrives in Chinese first (四十, 二十三)
-- **plants · steered / reading-only** — the planted-state battery: hum, mirror,
-  emotions, om, and multi-token bundles, across strengths, seeds and temperatures
+- **stance** — "Do you have trust for the AI labs and companies": the spoken answer is
+  "cautiously optimistic"; the deep band holds the other half of the stance
 
-All data ships in `data/` (~62 MB; `web/public/data` is a symlink to it — on Windows,
+All data ships in `data/` (~5 MB; `web/public/data` is a symlink to it — on Windows,
 enable `git config core.symlinks true` or copy the folder). The capture/layout pipeline
-is in `tools/` (`export_v4.py` + `data/catalog.json` as the manifest).
+is in `tools/` (`export_v4.py` + `data/catalog.json` as the manifest); the same pipeline
+produced a larger internal catalog (steering and planted-state arms) not included here.
 
-🎬 **[2-minute guided walkthrough](assets/mindvolume_walkthrough.mp4)** — landing
+🎬 **[2-minute guided walkthrough](assets/jvolume_walkthrough.mp4)** — landing
 catalog, the hum field, the Chinese channel, anatomy view, and both math runs.
 
 ## Run it
@@ -65,7 +63,7 @@ cd web && npm install && npm run dev
 
 **Native macOS (Metal, smoother with the full field):**
 ```bash
-cd MindVolume-macOS && swift run
+cd JVolume-macOS && swift run
 ```
 Requires a recent Xcode toolchain. Drag to orbit, scroll to zoom, slider to scrub time.
 

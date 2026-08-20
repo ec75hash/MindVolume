@@ -231,7 +231,7 @@ function App() {
     <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "8px 14px", display: "flex", gap: 14, alignItems: "center",
                     background: "#15151c", borderBottom: "1px solid #26262e", flexWrap: "wrap" }}>
-        <b>MindVolume</b>
+        <b>J Volume</b>
         {shared && (
           <select value={runId} onChange={(e) => setRunId(e.target.value)}
             style={{ background: "#1a1a22", color: "#d8dbe0", border: "1px solid #333",

@@ -86,7 +86,7 @@ final class AppModel: ObservableObject {
             let f = try ParticleLoader.loadRun(base, first)
             renderer = try Renderer(device: MTLCreateSystemDefaultDevice()!,
                                     field: f, shared: shared)
-        } catch { fatalError("MindVolume failed to start: \(error)") }
+        } catch { fatalError("J Volume failed to start: \(error)") }
     }
 
     func switchRun(_ id: String) {
@@ -243,7 +243,7 @@ let DEMO_SCRIPT: [DemoSeg] = [
     DemoSeg(t0: 99,  t1: 110, run: "arith_hard", anatomy: false, lang: 2, s0: 0.90, s1: 0.90,
             caption: "And the result arrives in Chinese first: 二十三 (twenty-three) in the mid-band, before the English digits."),
     DemoSeg(t0: 110, t1: 119, run: "run1", anatomy: false, lang: 0, s0: 1.0, s1: 1.0,
-            caption: "MindVolume — open source · github.com/jeffreywilliamportfolio/MindVolume"),
+            caption: "J Volume — open source · github.com/jeffreywilliamportfolio/MindVolume"),
 ]
 
 struct LandingView: View {
@@ -260,7 +260,7 @@ struct LandingView: View {
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("MindVolume")
+            Text("J Volume")
                 .font(.system(size: 34, weight: .bold))
             Text("An explorable map of what a language model was \u{201C}thinking\u{201D} while it answered.")
                 .font(.system(size: 16))
@@ -347,13 +347,13 @@ struct ContentView: View {
     @State private var langMode: Int = 0
     @State private var showLegend = true
     @State private var showLanding = true
-    private var demoMode: Bool { ProcessInfo.processInfo.environment["MINDVOLUME_DEMO"] != nil }
+    private var demoMode: Bool { ProcessInfo.processInfo.environment["JVOLUME_DEMO"] != nil }
     @State private var demoStart: Date? = nil
     @State private var demoCaption: String? = nil
     private let demoTimer = Timer.publish(every: 1.0/30.0, on: .main, in: .common).autoconnect()
 
     func demoTick() {
-        let goPath = ProcessInfo.processInfo.environment["MINDVOLUME_DEMO_GO"] ?? "/tmp/mindvolume_go"
+        let goPath = ProcessInfo.processInfo.environment["JVOLUME_DEMO_GO"] ?? "/tmp/jvolume_go"
         if demoStart == nil {
             showLanding = true
             if FileManager.default.fileExists(atPath: goPath) { demoStart = Date() }
@@ -486,12 +486,12 @@ struct ContentView: View {
             }
         }
         .frame(minWidth: 1250, minHeight: 750)
-        .navigationTitle("MindVolume — what it was thinking while it answered")
+        .navigationTitle("J Volume — what it was thinking while it answered")
     }
 }
 
 @main
-struct MindVolumeApp: App {
+struct JVolumeApp: App {
     @StateObject private var model = AppModel()
 
     var body: some Scene {

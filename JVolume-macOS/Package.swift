@@ -2,9 +2,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "MindVolume",
+    name: "JVolume",
     platforms: [.macOS(.v14)],
     targets: [
-        .executableTarget(name: "MindVolume", path: "Sources/MindVolume")
+        .executableTarget(name: "JVolume", path: "Sources/JVolume")
     ]
 )

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MindVolume v4 export = full catalog (catalog.json is the source of truth).
+"""J Volume v4 export = full catalog (catalog.json is the source of truth).
 
 Re-exports v2_shared.json and ALL run bins so word indices stay consistent.
 Cluster taxonomy is fitted on the original three full-vocab runs only, so the

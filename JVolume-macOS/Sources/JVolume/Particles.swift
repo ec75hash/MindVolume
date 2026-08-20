@@ -43,7 +43,7 @@ enum ParticleLoader {
     static func loadRun(_ base: String, _ runId: String) throws -> ParticleField {
         let data = try Data(contentsOf: URL(fileURLWithPath: "\(base)/v2_\(runId).bin"))
         guard data.count > 8, data.prefix(4) == Data("MVL3".utf8) else {
-            throw NSError(domain: "MindVolume", code: 1,
+            throw NSError(domain: "JVolume", code: 1,
                           userInfo: [NSLocalizedDescriptionKey: "bad magic for \(runId)"])
         }
         let n = Int(data.withUnsafeBytes { $0.load(fromByteOffset: 4, as: UInt32.self) })
